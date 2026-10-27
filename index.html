@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Наряд">
+<title>Наряд</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--tx:#1a1d21;--mu:#6b7280;--ac:#2f6f4f;--bd:#dfe3e8;--we:#fff1d6;--bad:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1c2127;--tx:#e8eaed;--mu:#9aa3ad;--ac:#5fb88a;--bd:#2d343c;--we:#352c1a;--bad:#ff7b6b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1c2127;--tx:#e8eaed;--mu:#9aa3ad;--ac:#5fb88a;--bd:#2d343c;--we:#352c1a;--bad:#ff7b6b;color-scheme:dark}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.35 -apple-system,system-ui,Helvetica,Arial,sans-serif}
+body{padding:10px 10px 84px;max-width:640px;margin:0 auto}
+button,select,input,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px}
+button{cursor:pointer}
+.pri{width:100%;background:var(--ac);color:#fff;border:0;padding:12px;font-weight:600;margin:8px 0}
+.nav{display:flex;justify-content:space-between;align-items:center;margin:4px 0}
+.nav button{width:44px;font-size:20px}
+.day{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px;margin:8px 0}
+.day.we{background:var(--we)}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.ic{padding:4px 8px;font-size:14px;margin-left:4px}
+.sl{display:flex;align-items:center;gap:8px;margin:5px 0}
+.sl span{width:60px;font-size:13px;color:var(--mu);flex:none}
+.sl select{flex:1;min-width:0}
+.ex{border-top:1px dashed var(--bd);margin-top:6px;padding-top:4px}
+.ex b{font-size:14px}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs button{flex:1;border:0;border-radius:0;padding:14px 2px;font-size:14px;background:none;color:var(--mu)}
+.tabs button.on{color:var(--ac);font-weight:700}
+h3{margin:16px 0 6px}
+.pr,.hi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 10px;margin:6px 0}
+.pr.na{border-color:var(--bad)}
+.r1{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.r1 select{padding:4px;font-size:13px}
+.r2{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--mu)}
+.r2 input{flex:1;min-width:110px}
+.r2 input[type=checkbox]{flex:none;min-width:0;padding:0}
+.pn{border-top:1px dashed var(--bd);margin-top:8px;padding-top:6px}
+.of{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin:4px 0}
+.del{width:100%;color:var(--bad);margin-top:12px}
+.hi{display:flex;justify-content:space-between;gap:6px;align-items:flex-start}
+.hint{color:var(--mu);font-size:14px}
+textarea{width:100%;box-sizing:border-box;min-height:70px}
+.frm{display:flex;gap:6px;margin:6px 0}.frm select{flex:1}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card)}
+td,th{border-bottom:1px solid var(--bd);padding:6px 4px;text-align:center}
+td:first-child,th:first-child{text-align:left}
+td small{color:var(--mu)}
+:root{--bg:#eef0fb;--card:#fff;--tx:#14162b;--mu:#6e7391;--ac:#6366f1;--ac2:#8b5cf6;--bd:rgba(99,102,241,.14);--we:rgba(251,146,60,.14);--glass:rgba(255,255,255,.74);--sh:0 8px 28px rgba(60,60,140,.10)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d17;--card:#1b1e33;--tx:#eceefb;--mu:#9296b5;--ac:#818cf8;--ac2:#a78bfa;--bd:rgba(255,255,255,.08);--we:rgba(251,146,60,.13);--glass:rgba(24,27,46,.72);--sh:0 8px 28px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#0b0d17;--card:#1b1e33;--tx:#eceefb;--mu:#9296b5;--ac:#818cf8;--ac2:#a78bfa;--bd:rgba(255,255,255,.08);--we:rgba(251,146,60,.13);--glass:rgba(24,27,46,.72);--sh:0 8px 28px rgba(0,0,0,.4)}
+body{padding-bottom:104px;background:none}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(800px 480px at 8% -8%,rgba(99,102,241,.22),transparent 70%),radial-gradient(700px 500px at 100% 0,rgba(236,72,153,.14),transparent 70%),var(--bg)}
+button,select,input,textarea{border-radius:14px;border:1px solid var(--bd);background:var(--card)}
+.day,.pr,.hi,table{background:var(--glass);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:22px;box-shadow:var(--sh)}
+.day{padding:14px;margin:12px 0}
+.day.we{background:linear-gradient(var(--we),var(--we)),var(--glass)}
+.dh b{font-size:20px;letter-spacing:-.3px}
+.sl{gap:10px;margin:7px 0}
+.sl span{width:46px;text-align:center;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-radius:10px;padding:5px 0;font-size:12px;font-weight:700}
+.sl select{padding:11px;border-radius:14px}
+.pri{background:linear-gradient(135deg,var(--ac),var(--ac2));border:0;border-radius:18px;padding:15px;color:#fff;box-shadow:0 10px 24px rgba(99,102,241,.35)}
+.ic{border-radius:12px;padding:6px 10px}
+.nav b{font-size:22px;font-weight:700;letter-spacing:-.4px}
+.nav button{border-radius:50%;width:42px;height:42px;padding:0}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--mu);margin:24px 4px 8px}
+.pr,.hi{padding:12px 14px;margin:8px 0}
+table{border-collapse:separate;border-spacing:0;overflow:hidden}
+th{font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}
+.ex{border-top:1px dashed var(--bd);margin-top:10px;padding-top:8px}
+.tabs{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));padding:6px;gap:4px;border:1px solid var(--bd);border-radius:26px;background:var(--glass);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:var(--sh)}
+.tabs button{border-radius:20px;padding:11px 2px;font-weight:600;background:none}
+.tabs button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="tabs"><button id="t_g" onclick="T_(`g`)">ЧК/ДК</button><button id="t_p" onclick="T_(`p`)">Люди</button><button id="t_h" onclick="T_(`h`)">Історія</button><button id="t_s" onclick="T_(`s`)">Облік</button></div>
+<script>
+const $=id=>document.getElementById(id);
+const MN=[`Січень`,`Лютий`,`Березень`,`Квітень`,`Травень`,`Червень`,`Липень`,`Серпень`,`Вересень`,`Жовтень`,`Листопад`,`Грудень`];
+const WD=[`нд`,`пн`,`вт`,`ср`,`чт`,`пт`,`сб`];
+const KN={ch:`Чергові`,f:`Дівчата`,m:`Хлопці`};
+const RN={sol:`Солдат`,msg:`Мол. сержант`,sgt:`Сержант`,ssg:`Ст. сержант`,gsg:`Гол. сержант`};
+const RS={sol:`солд.`,msg:`мол. серж.`,sgt:`серж.`,ssg:`ст. серж.`,gsg:`гол. серж.`};
+const grp=p=>p.r===`sol`?0:1;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad=n=>String(n).padStart(2,`0`);
+const td=()=>{const n=new Date();return n.getFullYear()+`-`+pad(n.getMonth()+1)+`-`+pad(n.getDate())};
+const fd=d=>d.slice(8)+`.`+d.slice(5,7);
+let S=null,tab=`g`,hf=``,H={d:td(),ch:``,k:[``,``,``]},OPEN={},CF=``,XF=``,X={n:``,c:1,nc:false,kd:[`m`,`f`,`ch`]};
+try{S=JSON.parse(localStorage.getItem(`nar1`))}catch(e){}
+if(!S||!S.people){const n=new Date();S={people:[],days:{},month:n.getFullYear()+`-`+pad(n.getMonth()+1)}}
+S.people.forEach(p=>{if(p.until){(p.off=p.off||[]).push({from:``,to:p.until,note:p.note||``});delete p.until}if(!p.off)p.off=[]});
+for(const d in S.days){const x=S.days[d];if(!x.k){x.k=[x.f||``,...(x.m||[``,``])];delete x.f;delete x.m}}
+function sv(){try{localStorage.setItem(`nar1`,JSON.stringify(S))}catch(e){}}
+const PP=id=>S.people.find(p=>p.id===id);
+const nm_=id=>{const p=PP(id);return p?esc(p.name):`—`};
+const iso=(m,d)=>m+`-`+pad(d);
+const dim=m=>{const[y,mm]=m.split(`-`).map(Number);return new Date(y,mm,0).getDate()};
+const dow=d=>new Date(d+`T12:00:00`).getDay();
+const we=d=>{const w=dow(d);return w===0||w===6};
+const dnum=d=>Math.floor(new Date(d+`T12:00:00`)/864e5);
+const inO=(o,d)=>(!o.from||d>=o.from)&&d<=o.to;
+const av=(p,d)=>!p.off.some(o=>inO(o,d));
+const offTx=o=>(o.from?(o.from===o.to?fd(o.from):fd(o.from)+`–`+fd(o.to)):`до `+fd(o.to))+(o.note?` · `+esc(o.note):``);
+const ND=()=>({ch:``,k:[``,``,``],ex:[],lock:false});
+const ids=x=>[x.ch,...x.k,...x.ex.flatMap(e=>e.ids)].filter(Boolean);
+const cids=x=>[x.ch,...x.k,...x.ex.filter(e=>!e.nc).flatMap(e=>e.ids)].filter(Boolean);
+function tl(skip){const t={};S.people.forEach(p=>t[p.id]={tot:0,we:0,mo:0,last:0});
+ for(const d in S.days){const x=S.days[d];if(skip&&skip(d,x))continue;
+  cids(x).forEach(i=>{const a=t[i];if(!a)return;a.tot++;if(we(d))a.we++;if(d.startsWith(S.month))a.mo++;a.last=Math.max(a.last,dnum(d))})}
+ return t}
+function bump(t,i,d){const a=t[i];if(!a)return;a.tot++;if(we(d))a.we++;a.mo++;a.last=dnum(d)}
+const MAXM=3;
+const key=(a,w,dn)=>(w?a.we*1000:0)+a.tot*10+a.mo*15+(dn>a.last?Math.max(0,6-(dn-a.last))*8:0)+a.last/1e6;
+const pk=(c,t,w,dn,n,u,nc)=>c.filter(p=>!u.has(p.id)&&(nc||t[p.id].mo<MAXM)).sort((a,b)=>key(t[a.id],w,dn)-key(t[b.id],w,dn)).slice(0,n);
+function fe(t,x,d){const u=new Set(ids(x));
+ x.ex.forEach(e=>{e.ids=e.ids.filter(Boolean);const need=e.c-e.ids.length;
+  if(need>0)pk(S.people.filter(p=>av(p,d)&&(!e.kd||e.kd.includes(p.k))),t,we(d),dnum(d),need,u,e.nc).forEach(p=>{e.ids.push(p.id);u.add(p.id);if(!e.nc)bump(t,p.id,d)})})}
+function gen(){
+ const T=td(),t=tl((d,x)=>d.startsWith(S.month)&&!x.lock&&d>=T);
+ for(let k=1;k<=dim(S.month);k++){
+  const d=iso(S.month,k),w=we(d),dn=dnum(d);let x=S.days[d];
+  if(d<T)continue;
+  if(x&&x.lock){fe(t,x,d);continue}
+  const ex=x?x.ex.map(e=>({n:e.n,c:e.c,nc:e.nc,kd:e.kd,ids:[]})):[];
+  x=ND();x.ex=ex;
+  const u=new Set(),A=S.people.filter(p=>av(p,d)),D=A.filter(p=>p.k!==`ch`);
+  const ch=pk(A.filter(p=>p.k===`ch`),t,w,dn,1,u)[0];
+  if(ch){x.ch=ch.id;u.add(ch.id)}
+  const cs=K=>K.reduce((s,p)=>s+key(t[p.id],w,dn),0);
+  let best=null;
+  for(const r of [0,1]){const G_=D.filter(p=>grp(p)===r),f=pk(G_.filter(p=>p.k===`f`),t,w,dn,1,u),m=pk(G_.filter(p=>p.k===`m`),t,w,dn,2,u);
+   if(f.length===1&&m.length===2){const K=[f[0],...m],c=cs(K);if(!best||c<best.c)best={K,c}}}
+  if(!best)for(const r of [0,1]){const K=pk(D.filter(p=>grp(p)===r),t,w,dn,3,u);if(K.length===3){const c=cs(K);if(!best||c<best.c)best={K,c}}}
+  if(!best){let K=[...pk(D.filter(p=>p.k===`f`),t,w,dn,1,u),...pk(D.filter(p=>p.k===`m`),t,w,dn,2,u)];
+   if(K.length<3)K=K.concat(pk(D,t,w,dn,3-K.length,new Set([...u,...K.map(p=>p.id)])));best={K}}
+  x.k=[0,1,2].map(i=>best.K[i]?best.K[i].id:``);
+  cids(x).forEach(i=>bump(t,i,d));
+  fe(t,x,d);
+  S.days[d]=x}
+ sv()}
+function opt(list,val,d){return `<option value="">—</option>`+list.map(p=>`<option value="${p.id}"${p.id===val?` selected`:``}>${esc(p.name)} · ${RS[p.r]}${av(p,d)?``:` ⛔`}</option>`).join(``)}
+const row=(l,o,fn)=>`<label class="sl"><span>${l}</span><select onchange="${fn}">${o}</select></label>`;
+const CH=()=>S.people.filter(p=>p.k===`ch`),DK=()=>[...S.people.filter(p=>p.k===`f`),...S.people.filter(p=>p.k===`m`)];
+function G(){
+ const[y,m]=S.month.split(`-`),C=CH(),Dk=DK();
+ let h=`<div class="nav"><button onclick="mv(-1)">‹</button><b>${MN[m-1]} ${y}</b><button onclick="mv(1)">›</button></div><button class="pri" onclick="gn()">Скласти графік на місяць</button><div class="hint">Складається від сьогодні, не більше 3 нарядів на місяць на людину. Ваші ручні правки не змінюються.</div>`;
+ if(!S.people.length)h+=`<p class="hint">Спочатку додайте людей у вкладці «Люди».</p>`;
+ for(let k=1;k<=dim(S.month);k++){const d=iso(S.month,k),x=S.days[d]||ND();
+  h+=`<div class="day${we(d)?` we`:``}" id="d_${d}"><div class="dh"><b>${k} ${WD[dow(d)]}</b><span><button class="ic" onclick="ae('${d}')">＋ наряд</button></span></div>`
+  +row(`ЧК`,opt(C,x.ch,d),`ss('${d}','ch',0,this.value)`)
+  +[0,1,2].map(i=>row(`ДК ${i+1}`,opt(Dk,x.k[i],d),`ss('${d}','k',${i},this.value)`)).join(``);
+  h+=exH(d,x)+(XF===d?xform(d):``);
+  h+=`</div>`}
+ return h}
+function mk(d){return S.days[d]||(S.days[d]=ND())}
+function ask(k){if(CF===k){CF=``;return true}CF=k;R();return false}
+const exH=(d,x)=>x.ex.map((e,i)=>{let h=`<div class="ex"><b>${esc(e.n)}</b> <span class="hint">${(e.kd||[]).map(k=>KN[k]).join(`, `)}</span> <button class="ic" onclick="tn('${d}',${i})">${e.nc?`не рахується`:`рахується`}</button><button class="ic" onclick="de('${d}',${i})">×</button>`;
+ for(let j=0;j<e.c;j++)h+=row(`№${j+1}`,opt(S.people.filter(p=>!e.kd||e.kd.includes(p.k)||e.ids[j]===p.id),e.ids[j]||``,d),`se('${d}',${i},${j},this.value)`);
+ return h+`</div>`}).join(``);
+const xform=d=>`<div class="ex"><input placeholder="Назва наряду (наприклад, ЧП)" value="${esc(X.n)}" oninput="X.n=this.value" style="width:100%;box-sizing:border-box"><div class="r2">Людей <input type="number" min="1" value="${X.c}" oninput="X.c=+this.value" style="max-width:70px"><label><input type="checkbox" ${X.nc?`checked`:``} onchange="X.nc=this.checked"> не рахувати в обліку</label></div><div class="r2">Хто може заступати: <label><input type="checkbox" ${X.kd.includes(`m`)?`checked`:``} onchange="tk('m',this.checked)"> Хлопці</label><label><input type="checkbox" ${X.kd.includes(`f`)?`checked`:``} onchange="tk('f',this.checked)"> Дівчата</label><label><input type="checkbox" ${X.kd.includes(`ch`)?`checked`:``} onchange="tk('ch',this.checked)"> Чергові</label></div><div class="frm"><button onclick="addX('${d}',0)">Додати, обрати вручну</button><button onclick="addX('${d}',1)">Додати і підібрати</button></div></div>`;
+function ss(d,f,i,v){const x=mk(d);if(f===`k`)x.k[i]=v;else x[f]=v;x.lock=true;sv();R()}
+function se(d,i,j,v){const x=mk(d);x.ex[i].ids[j]=v;x.lock=true;sv();R()}
+function rl(){for(const d in S.days)if(d.startsWith(S.month)&&d>=td())S.days[d].lock=false;sv();R()}
+function tk(k,v){X.kd=X.kd.filter(i=>i!==k);if(v)X.kd.push(k)}
+function lk(d){const x=mk(d);x.lock=!x.lock;sv();R()}
+function de(d,i){mk(d).ex.splice(i,1);sv();R()}
+function ae(d){XF=XF===d?``:d;R()}
+function addX(d,auto){const n=X.n.trim(),c=X.c|0;if(!d||!n||c<1||!X.kd.length)return;
+ const x=mk(d);x.ex.push({n,c,nc:X.nc,kd:[...X.kd],ids:[]});if(auto)fe(tl(dd=>dd===d),x,d);X.n=``;XF=``;sv();R()}
+function tn(d,i){const e=mk(d).ex[i];e.nc=!e.nc;sv();R()}
+function mv(s){let[y,m]=S.month.split(`-`).map(Number);m+=s;if(m<1){m=12;y--}if(m>12){m=1;y++}S.month=y+`-`+pad(m);sv();R()}
+function gn(){if(!S.people.length)return;gen();R()}
+const rkOpts=(sel,noSol)=>Object.keys(RN).filter(r=>!(noSol&&r===`sol`)).map(r=>`<option value="${r}"${sel===r?` selected`:``}>${RN[r]}</option>`).join(``);
+function Pp(){const T=td();
+ let h=`<h3>Додати людей</h3><textarea id="nm" placeholder="Прізвища, кожне з нового рядка"></textarea><div class="frm"><select id="kd"><option value="ch">Черговий</option><option value="f">Дівчина</option><option value="m">Хлопець</option></select><select id="rk">${rkOpts(`sol`)}</select></div><button class="pri" onclick="addP()">Додати</button><div class="hint">Днювальні в одній зміні — одного рівня: сержанти з сержантами, солдати з солдатами. Черговий — завжди сержант.</div>`;
+ for(const k of [`ch`,`f`,`m`]){const L=S.people.filter(p=>p.k===k);h+=`<h3>${KN[k]} (${L.length})</h3>`;
+  L.forEach(p=>{const cur=p.off.find(o=>inO(o,T));
+   h+=`<div class="pr${cur?` na`:``}"><div class="r1"><b>${esc(p.name)}</b><span><select onchange="rk('${p.id}',this.value)">${rkOpts(p.r,k===`ch`)}</select><button class="ic" onclick="mn('${p.id}')">⋯</button></span></div>${cur?`<div class="hint">⛔ ${offTx(cur)}</div>`:``}`;
+   if(OPEN[p.id])h+=`<div class="pn"><div class="hint">Дні, коли не може заступати</div>${p.off.map((o,i)=>`<div class="of"><span>${offTx(o)}</span><button class="ic" onclick="delOff('${p.id}',${i})">×</button></div>`).join(``)}<div class="r2">з <input type="date" id="of_${p.id}"> до <input type="date" id="ot_${p.id}"><input id="on_${p.id}" placeholder="причина"><button class="ic" onclick="addOff('${p.id}')">Додати</button></div><button class="del" onclick="dl('${p.id}')">${CF===`p`+p.id?`Точно видалити? Натисніть ще раз`:`Видалити зі списку`}</button></div>`;
+   h+=`</div>`})}
+ return h}
+function addP(){const nm=$(`nm`).value.split(`\n`).map(s=>s.trim()).filter(Boolean),k=$(`kd`).value;let r=$(`rk`).value;if(k===`ch`&&r===`sol`)r=`sgt`;
+ nm.forEach(s=>S.people.push({id:`p`+Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:s,k,r,off:[]}));sv();R()}
+function rk(id,v){PP(id).r=v;sv();R()}
+function mn(id){CF=``;OPEN[id]=!OPEN[id];R()}
+function addOff(id){const f=$(`of_`+id).value;if(!f)return;let t=$(`ot_`+id).value||f;if(t<f)t=f;
+ const p=PP(id);p.off.push({from:f,to:t,note:$(`on_`+id).value.trim()});p.off.sort((a,b)=>(a.from||a.to)<(b.from||b.to)?-1:1);sv();R()}
+function delOff(id,i){PP(id).off.splice(i,1);sv();R()}
+function dl(id){if(!ask(`p`+id))return;S.people=S.people.filter(p=>p.id!==id);
+ for(const d in S.days){const x=S.days[d];if(x.ch===id)x.ch=``;x.k=x.k.map(i=>i===id?``:i);x.ex.forEach(e=>e.ids=e.ids.filter(i=>i!==id))}sv();R()}
+function Hh(){
+ const C=CH(),Dk=DK(),T=td();
+ let h=`<h3>Внести наряд</h3><div class="hint">Вкажіть дату і склад — для минулих днів, щоб вони враховувались в обліку.</div><div class="frm"><input type="date" value="${H.d}" onchange="hd(this.value)" style="flex:1"></div>`
+  +row(`ЧК`,opt(C,H.ch,H.d),`H.ch=this.value`)
+  +[0,1,2].map(i=>row(`ДК ${i+1}`,opt(Dk,H.k[i],H.d),`H.k[${i}]=this.value`)).join(``)
+  +`<h3>Додатковий наряд</h3>`+xform(H.d)+(S.days[H.d]?exH(H.d,S.days[H.d]):``)+`<button class="pri" onclick="hs()">Зберегти</button>`
+  +`<h3>Історія</h3><select onchange="hf=this.value;R()" style="width:100%"><option value="">Усі</option>${S.people.map(p=>`<option value="${p.id}"${hf===p.id?` selected`:``}>${esc(p.name)}</option>`).join(``)}</select>`;
+ const L=Object.keys(S.days).filter(d=>d<=T&&ids(S.days[d]).length&&(!hf||ids(S.days[d]).includes(hf))).sort().reverse();
+ if(hf)h+=`<div class="hint">Нарядів: ${L.length}</div>`;
+ if(!L.length)h+=`<p class="hint">Записів немає.</p>`;
+ let cm=``;
+ L.forEach(d=>{const x=S.days[d];if(d.slice(0,7)!==cm){cm=d.slice(0,7);h+=`<h3>${MN[+cm.slice(5)-1]} ${cm.slice(0,4)}</h3>`}
+  h+=`<div class="hi"><div><b>${fd(d)} ${WD[dow(d)]}</b><div class="hint">ЧК: ${nm_(x.ch)} · ДК: ${x.k.filter(Boolean).map(nm_).join(`, `)||`—`}${x.ex.map(e=>` · ${esc(e.n)}${e.nc?` (не рах.)`:``}: ${e.ids.map(nm_).join(`, `)}`).join(``)}</div></div><span><button class="ic" onclick="ed('${d}')">✎</button><button class="ic" onclick="hx('${d}')">${CF===`h`+d?`Точно?`:`×`}</button></span></div>`});
+ return h}
+function hd(v){H.d=v;const x=S.days[v];H.ch=x?x.ch:``;H.k=x?[...x.k]:[``,``,``];R()}
+function hs(){if(!H.d)return;const x=mk(H.d);x.ch=H.ch;x.k=[...H.k];x.lock=true;sv();
+ const n=new Date(H.d+`T12:00:00`);n.setDate(n.getDate()+1);hd(n.getFullYear()+`-`+pad(n.getMonth()+1)+`-`+pad(n.getDate()))}
+function ed(d){S.month=d.slice(0,7);tab=`g`;R();setTimeout(()=>{const e=$(`d_`+d);if(e)e.scrollIntoView()},0)}
+function hx(d){if(!ask(`h`+d))return;delete S.days[d];sv();R()}
+function Ss(){
+ const t=tl(),m=+S.month.slice(5);let h=`<h3>Облік нарядів</h3><div class="hint">Місяць — той, що відкритий у ЧК/ДК.</div>`;
+ for(const k of [`ch`,`f`,`m`]){const L=S.people.filter(p=>p.k===k);if(!L.length)continue;
+  h+=`<h3>${KN[k]}</h3><table><tr><th>Прізвище</th><th>${MN[m-1]}</th><th>Весь час</th></tr>`;
+  L.forEach(p=>{const a=t[p.id];h+=`<tr><td>${esc(p.name)} <small>${RS[p.r]}</small></td><td${a.mo>3?` style="color:var(--bad);font-weight:700"`:``}>${a.mo}</td><td>${a.tot}</td></tr>`});
+  h+=`</table>`}
+ return h}
+function T_(t){tab=t;CF=``;R()}
+function R(){$(`app`).innerHTML=tab===`g`?G():tab===`p`?Pp():tab===`h`?Hh():Ss();
+ [`g`,`p`,`h`,`s`].forEach(k=>$(`t_`+k).className=tab===k?`on`:``)}
+R();
+</script>
+</body>
+</html>
